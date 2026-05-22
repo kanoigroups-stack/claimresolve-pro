@@ -1,0 +1,66 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Users, IndianRupee, Star, Shield, GraduationCap, TrendingUp, Scale, FileCheck } from "lucide-react";
+import SectionWrapper from "../ui/SectionWrapper";
+import SectionHeader from "../ui/SectionHeader";
+
+function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number; suffix?: string; prefix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+    const duration = 2000, steps = 60, increment = target / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) { setCount(target); clearInterval(timer); } else { setCount(Math.floor(current)); }
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [isInView, target]);
+
+  return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
+}
+
+const stats = [
+  { icon: Users, value: 50000, suffix: "+", label: "Cases Assisted", color: "text-primary-700" },
+  { icon: IndianRupee, value: 200, suffix: "+ Crores", prefix: "₹", label: "Claims Recovered", color: "text-accent-600" },
+  { icon: Star, value: 4.8, suffix: "", label: "Client Rating", color: "text-amber-500", isDecimal: true },
+];
+
+const credentials = [
+  { icon: GraduationCap, title: "Legal Experts", desc: "Advocates & retired insurance ombudsmen" },
+  { icon: Shield, title: "Insurance Specialists", desc: "Former insurance company professionals" },
+  { icon: TrendingUp, title: "94% Success Rate", desc: "Cases resolved in client's favor" },
+  { icon: Scale, title: "Regulatory Knowledge", desc: "IRDAI, Ombudsman & Consumer Court expertise" },
+  { icon: FileCheck, title: "Documentation Pros", desc: "Perfect paperwork for maximum impact" },
+  { icon: Users, title: "Dedicated Team", desc: "Personal case manager for every client" },
+];
+
+export default function TrustSection() {
+  return (
+    <SectionWrapper id="trust" className="bg-gradient-to-b from-primary-900 to-primary-950 text-white">
+      <SectionHeader title="Why Thousands of Policyholders Trust Us" subtitle="A track record built on expertise, transparency, and relentless advocacy for policyholders" light />
+      <div className="grid md:grid-cols-3 gap-8 mb-20">
+        {stats.map((stat, index) => (
+          <motion.div key={stat.label} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10">
+            <stat.icon className={`w-10 h-10 mx-auto mb-4 ${stat.color}`} />
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-white">{stat.isDecimal ? <span>4.8</span> : <AnimatedCounter target={stat.value} prefix={stat.prefix} suffix={stat.suffix} />}</div>
+            <div className="text-white/70 font-medium">{stat.label}</div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {credentials.map((cred, index) => (
+          <motion.div key={cred.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: index * 0.08 }} className="flex items-start gap-4 bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
+            <div className="w-12 h-12 bg-accent-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><cred.icon className="w-6 h-6 text-accent-400" /></div>
+            <div><h4 className="font-semibold text-white mb-1">{cred.title}</h4><p className="text-sm text-white/60">{cred.desc}</p></div>
+          </motion.div>
+        ))}
+      </div>
+    </SectionWrapper>
+  );
+}
