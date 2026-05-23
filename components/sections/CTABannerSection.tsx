@@ -13,7 +13,7 @@ export default function CTABannerSection() {
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Facing an Insurance Claim Issue?</h2>
-              <p className="text-lg md:text-xl text-primary-100 leading-relaxed">Don't let insurers deny what is rightfully yours. Our experts have recovered ₹200+ Crores for policyholders just like you.</p>
+              <p className="text-lg md:text-xl text-primary-100 leading-relaxed">Don't let insurers deny what is rightfully yours. Our experts have recovered ₹20+ Crores for policyholders just like you.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
               <a href="#contact" className="btn-accent text-base px-8 py-4 group">Submit Your Case Now<ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></a>
