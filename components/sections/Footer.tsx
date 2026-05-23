@@ -21,7 +21,7 @@ export default function Footer() {
             <div className="space-y-3">
               <a href="tel:+919321152524" className="flex items-center gap-3 text-sm hover:text-white transition-colors"><Phone className="w-4 h-4 text-accent-500" />+919321152524</a>
               <a href="mailto:help@tatkalclaims" className="flex items-center gap-3 text-sm hover:text-white transition-colors"><Mail className="w-4 h-4 text-accent-500" />help@tatkalclaims.com</a>
-              <div className="flex items-start gap-3 text-sm"><MapPin className="w-4 h-4 text-accent-500 mt-0.5" /><span>123 84, Bakol street, Laudin Villa, Bhayander West, Mumbai - 401101</span></div>
+              <div className="flex items-start gap-3 text-sm"><MapPin className="w-4 h-4 text-accent-500 mt-0.5" /><span>84, Bakol street, Laudin Villa, Bhayander West, Mumbai - 401101</span></div>
             </div>
           </div>
           <div><h4 className="text-white font-semibold mb-4">Company</h4><ul className="space-y-3">{footerLinks.company.map((link) => <li key={link.label}><Link href={link.href} className="text-sm hover:text-white transition-colors">{link.label}</Link></li>)}</ul></div>
@@ -31,7 +31,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-slate-800">
         <div className="container-main px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-500">© {new Date().getFullYear()} ClaimResolve Pro. All rights reserved.</p>
+          <p className="text-sm text-slate-500">© {new Date().getFullYear()} Tatkal Claims. All rights reserved.</p>
           <div className="flex items-center gap-4">
             {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => <a key={i} href="#" className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary-700 transition-colors"><Icon className="w-4 h-4" /></a>)}
           </div>
