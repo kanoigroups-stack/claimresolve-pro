@@ -26,15 +26,15 @@ function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number;
 }
 
 const stats = [
-  { icon: Users, value: 50000, suffix: "+", label: "Cases Assisted", color: "text-primary-700" },
-  { icon: IndianRupee, value: 200, suffix: "+ Crores", prefix: "₹", label: "Claims Recovered", color: "text-accent-600" },
-  { icon: Star, value: 4.8, suffix: "", label: "Client Rating", color: "text-amber-500", isDecimal: true },
+  { icon: Users, value: 500, suffix: "+", label: "Cases Assisted", color: "text-primary-700" },
+  { icon: IndianRupee, value: 20, suffix: "+ Crores", prefix: "₹", label: "Claims Recovered", color: "text-accent-600" },
+  { icon: Star, value: 4.6, suffix: "", label: "Client Rating", color: "text-amber-500", isDecimal: true },
 ];
 
 const credentials = [
   { icon: GraduationCap, title: "Legal Experts", desc: "Advocates & retired insurance ombudsmen" },
   { icon: Shield, title: "Insurance Specialists", desc: "Former insurance company professionals" },
-  { icon: TrendingUp, title: "94% Success Rate", desc: "Cases resolved in client's favor" },
+  { icon: TrendingUp, title: "82% Success Rate", desc: "Cases resolved in client's favor" },
   { icon: Scale, title: "Regulatory Knowledge", desc: "IRDAI, Ombudsman & Consumer Court expertise" },
   { icon: FileCheck, title: "Documentation Pros", desc: "Perfect paperwork for maximum impact" },
   { icon: Users, title: "Dedicated Team", desc: "Personal case manager for every client" },
