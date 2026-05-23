@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5 mb-6">
               <div className="w-10 h-10 bg-primary-700 rounded-xl flex items-center justify-center"><Shield className="w-5 h-5 text-white" /></div>
-              <div className="flex flex-col"><span className="font-heading font-bold text-xl text-white leading-none">ClaimResolve</span><span className="text-[10px] font-semibold tracking-widest uppercase text-accent-500">Pro</span></div>
+              <div className="flex flex-col"><span className="font-heading font-bold text-xl text-white leading-none">Tatkal Claims</span><span className="text-[10px] font-semibold tracking-widest uppercase text-accent-500"></span></div>
             </Link>
             <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">India's most trusted platform for resolving insurance complaints. We help policyholders recover rightful claims through expert dispute resolution.</p>
             <div className="space-y-3">
