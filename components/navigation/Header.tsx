@@ -45,7 +45,7 @@ export default function Header() {
             </nav>
 
             <div className="hidden lg:flex items-center gap-3">
-              <a href="tel:+91XXXXXXXXXX" className="flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-primary-700 transition-colors"><Phone className="w-4 h-4" /><span>Call Us</span></a>
+              <a href="tel:+919321152524" className="flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-primary-700 transition-colors"><Phone className="w-4 h-4" /><span>Call Us</span></a>
               <Link href="#contact" className="btn-primary text-sm py-2.5 px-5">Submit Case</Link>
             </div>
 
@@ -64,7 +64,7 @@ export default function Header() {
                 <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-800 py-3 border-b border-slate-100">{link.label}</Link>
               ))}
               <Link href="#contact" className="btn-primary mt-4 text-center" onClick={() => setIsMobileMenuOpen(false)}>Submit Your Case</Link>
-              <a href="tel:+91XXXXXXXXXX" className="flex items-center justify-center gap-2 text-primary-700 font-medium mt-2"><Phone className="w-5 h-5" />Call: +91 XXXXXXXXXX</a>
+              <a href="tel:+919321152524" className="flex items-center justify-center gap-2 text-primary-700 font-medium mt-2"><Phone className="w-5 h-5" />Call: +91 XXXXXXXXXX</a>
             </nav>
           </motion.div>
         )}
