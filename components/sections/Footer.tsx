@@ -20,7 +20,7 @@ export default function Footer() {
             <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">India's most trusted platform for resolving insurance complaints. We help policyholders recover rightful claims through expert dispute resolution.</p>
             <div className="space-y-3">
               <a href="tel:+919321152524" className="flex items-center gap-3 text-sm hover:text-white transition-colors"><Phone className="w-4 h-4 text-accent-500" />+91 XXXXXXXXXX</a>
-              <a href="mailto:help@claimresolve.pro" className="flex items-center gap-3 text-sm hover:text-white transition-colors"><Mail className="w-4 h-4 text-accent-500" />help@claimresolve.pro</a>
+              <a href="mailto:help@tatkalclaims" className="flex items-center gap-3 text-sm hover:text-white transition-colors"><Mail className="w-4 h-4 text-accent-500" />help@claimresolve.pro</a>
               <div className="flex items-start gap-3 text-sm"><MapPin className="w-4 h-4 text-accent-500 mt-0.5" /><span>123 Business District, New Delhi, India 110001</span></div>
             </div>
           </div>
