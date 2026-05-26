@@ -6,23 +6,33 @@ import { Users, IndianRupee, Star, Shield, GraduationCap, TrendingUp, Scale, Fil
 import SectionWrapper from "../ui/SectionWrapper";
 import SectionHeader from "../ui/SectionHeader";
 
-function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number; suffix?: string; prefix?: string }) {
+function AnimatedCounter({ target, suffix = "", prefix = "", isDecimal = false }: { target: number; suffix?: string; prefix?: string; isDecimal?: boolean }) {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!isInView) return;
-    const duration = 2000, steps = 60, increment = target / steps;
-    let current = 0;
+    const duration = 2000;
+    const steps = 60;
+    const increment = target / steps;
+    let step = 0;
+    
     const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) { setCount(target); clearInterval(timer); } else { setCount(Math.floor(current)); }
+      step++;
+      const current = increment * step;
+      
+      if (step >= steps) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(isDecimal ? parseFloat(current.toFixed(1)) : Math.floor(current));
+      }
     }, duration / steps);
+    
     return () => clearInterval(timer);
-  }, [isInView, target]);
+  }, [target, isDecimal]);
 
-  return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
+  const displayValue = isDecimal ? count.toFixed(1) : count.toLocaleString();
+  
+  return <span>{prefix}{displayValue}{suffix}</span>;
 }
 
 const stats = [
@@ -48,7 +58,7 @@ export default function TrustSection() {
         {stats.map((stat, index) => (
           <motion.div key={stat.label} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/10">
             <stat.icon className={`w-10 h-10 mx-auto mb-4 ${stat.color}`} />
-            <div className="text-4xl md:text-5xl font-bold mb-2 text-white">{stat.isDecimal ? <span>4.8</span> : <AnimatedCounter target={stat.value} prefix={stat.prefix} suffix={stat.suffix} />}</div>
+            <div className="text-4xl md:text-5xl font-bold mb-2 text-white"><AnimatedCounter target={stat.value} prefix={stat.prefix} suffix={stat.suffix} isDecimal={stat.isDecimal || false} /></div>
             <div className="text-white/70 font-medium">{stat.label}</div>
           </motion.div>
         ))}
