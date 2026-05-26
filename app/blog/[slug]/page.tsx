@@ -16,7 +16,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   if (!post) return { title: "Not Found" };
   
   return {
-    title: `${post.title} | ClaimResolve Pro`,
+    title: `${post.title} | Tatkal Claims`,
     description: post.excerpt,
   };
 }
