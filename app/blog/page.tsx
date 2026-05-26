@@ -3,7 +3,7 @@ import Link from "next/link";
 import blogsData from "@/data/blogs.json";
 
 export const metadata = {
-  title: "Knowledge Center | ClaimResolve Pro",
+  title: "Knowledge Center | Tatkal Claims",
   description: "Expert insights on insurance claim rejection, delays, mis-selling, and dispute resolution.",
 };
 
