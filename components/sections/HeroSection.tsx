@@ -7,7 +7,7 @@ import LeadCaptureForm from "../forms/LeadCaptureForm";
 const trustBadges = [
   { icon: ShieldCheck, label: "100% Secure" },
   { icon: Clock, label: "24/7 Support" },
-  { icon: Users, label: "50K+ Helped" },
+  { icon: Users, label: "500+ Helped" },
   { icon: Award, label: "Expert Team" },
 ];
 
