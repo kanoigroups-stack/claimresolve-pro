@@ -30,59 +30,81 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   // Convert markdown-style content to HTML-like structure
   const renderContent = (content: string) => {
-    const lines = content.split('\n');
-    const elements: JSX.Element[] = [];
-    let key = 0;
+  const lines = content.split('\n');
+  const elements: JSX.Element[] = [];
+  let key = 0;
+  let currentList: JSX.Element[] = [];
 
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      
-      if (!line) continue;
-      
-      // Heading level 2
-      if (line.startsWith('## ')) {
-        elements.push(
-          <h2 key={key++} className="text-2xl font-bold text-slate-900 mt-10 mb-4">
-            {line.replace('## ', '')}
-          </h2>
-        );
-      }
-      // Heading level 3
-      else if (line.startsWith('### ')) {
-        elements.push(
-          <h3 key={key++} className="text-xl font-semibold text-slate-900 mt-8 mb-3">
-            {line.replace('### ', '')}
-          </h3>
-        );
-      }
-      // Bullet points
-      else if (line.startsWith('- ')) {
-        elements.push(
-          <li key={key++} className="text-slate-700 leading-relaxed ml-6 mb-2 list-disc">
-            {line.replace('- ', '')}
-          </li>
-        );
-      }
-      // Bold text
-      else if (line.startsWith('**') && line.endsWith('**')) {
-        elements.push(
-          <p key={key++} className="text-slate-900 font-bold leading-relaxed mb-4">
-            {line.replace(/\*\*/g, '')}
-          </p>
-        );
-      }
-      // Regular paragraph
-      else {
-        elements.push(
-          <p key={key++} className="text-slate-700 leading-relaxed mb-4">
-            {line}
-          </p>
-        );
-      }
+  const flushList = () => {
+    if (currentList.length > 0) {
+      elements.push(
+        <ul key={key++} className="list-disc pl-6 mb-4 space-y-1">
+          {currentList}
+        </ul>
+      );
+      currentList = [];
     }
-
-    return elements;
   };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    
+    if (!line) {
+      flushList();
+      continue;
+    }
+    
+    // Heading level 2
+    if (line.startsWith('## ')) {
+      flushList();
+      elements.push(
+        <h2 key={key++} className="text-2xl font-bold text-slate-900 mt-10 mb-4">
+          {line.replace('## ', '')}
+        </h2>
+      );
+    }
+    // Heading level 3
+    else if (line.startsWith('### ')) {
+      flushList();
+      elements.push(
+        <h3 key={key++} className="text-xl font-semibold text-slate-900 mt-8 mb-3">
+          {line.replace('### ', '')}
+        </h3>
+      );
+    }
+    // Bullet points
+    else if (line.startsWith('- ')) {
+      currentList.push(
+        <li key={key++} className="text-slate-700 leading-relaxed">
+          {line.replace('- ', '')}
+        </li>
+      );
+    }
+    // Bold text
+    else if (line.startsWith('**') && line.endsWith('**')) {
+      flushList();
+      elements.push(
+        <p key={key++} className="text-slate-900 font-bold leading-relaxed mb-4">
+          {line.replace(/\*\*/g, '')}
+        </p>
+      );
+    }
+    // Regular paragraph
+    else {
+      flushList();
+      elements.push(
+        <p key={key++} className="text-slate-700 leading-relaxed mb-4">
+          {line}
+        </p>
+      );
+    }
+  }
+
+  // Don't forget to flush any remaining list items at the end
+  flushList();
+
+  return elements;
+};
 
   return (
     <main className="min-h-screen bg-white">
