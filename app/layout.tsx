@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3ZBJ1B7V8" />
         <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Tatkal Claims", url: "https://claimresolve.pro", logo: "https://claimresolve.pro/logo.png", description: "India's most trusted platform for resolving insurance complaints and disputes.", contactPoint: { "@type": "ContactPoint", telephone: "+91-9321152524", contactType: "customer service", areaServed: "IN", availableLanguage: ["English", "Hindi"] }, sameAs: ["https://facebook.com/claimresolvepro","https://twitter.com/claimresolvepro","https://linkedin.com/company/claimresolvepro"] }) }} />
       </head>
