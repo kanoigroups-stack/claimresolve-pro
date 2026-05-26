@@ -41,13 +41,13 @@ export default function Header() {
                 <Shield className="w-5 h-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="font-heading font-bold text-xl leading-none text-primary-800">
-                  ClaimResolve
-                </span>
-                <span className="text-[10px] font-semibold tracking-widest uppercase text-accent-500">
-                  Pro
-                </span>
-              </div>
+  <span className="font-heading font-bold text-xl leading-none text-primary-800">
+    Tatkal Claims
+  </span>
+  <span className="text-[10px] font-semibold tracking-widest uppercase text-accent-500">
+    Pro
+  </span>
+</div>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8">
