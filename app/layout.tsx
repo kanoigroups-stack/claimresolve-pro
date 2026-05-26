@@ -23,8 +23,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
       <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3ZBJ1B7V8" />
-        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');` }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Tatkal Claims", url: "https://claimresolve.pro", logo: "https://claimresolve.pro/logo.png", description: "India's most trusted platform for resolving insurance complaints and disputes.", contactPoint: { "@type": "ContactPoint", telephone: "+91-9321152524", contactType: "customer service", areaServed: "IN", availableLanguage: ["English", "Hindi"] }, sameAs: ["https://facebook.com/claimresolvepro","https://twitter.com/claimresolvepro","https://linkedin.com/company/claimresolvepro"] }) }} />
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3ZBJ1B7V8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M3ZBJ1B7V8');
+</script>');` }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Tatkal Claims", url: "https://tatkalclaims.com", logo: "https://tatkalclaims.com/logo.png", description: "India's most trusted platform for resolving insurance complaints and disputes.", contactPoint: { "@type": "ContactPoint", telephone: "+91-9321152524", contactType: "customer service", areaServed: "IN", availableLanguage: ["English", "Hindi"] }, sameAs: ["https://facebook.com/claimresolvepro","https://twitter.com/claimresolvepro","https://linkedin.com/company/claimresolvepro"] }) }} />
       </head>
       <body className="font-body text-slate-800 antialiased bg-white">{children}</body>
     </html>
