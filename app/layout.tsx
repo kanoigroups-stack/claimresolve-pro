@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Resolve your insurance claim disputes with expert legal professionals. 500+ cases assisted, ₹20+ Crores claims recovered. Claim rejection, delay, mis-selling & more.",
   keywords: ["insurance claim rejection","insurance dispute resolution","claim delay help","insurance ombudsman","mis-sold insurance","claim recovery","insurance grievance","health insurance dispute","motor insurance claim"],
   authors: [{ name: "Tatkal Claims" }],
-  openGraph: { title: "Tatkal Claimsl | Resolve Insurance Claim Disputes", description: "Expert help for rejected, delayed, or disputed insurance claims. 500+ cases resolved.", siteName: "Tatkal Claims", locale: "en_IN", type: "website" },
+  openGraph: { title: "Tatkal Claims | Resolve Insurance Claim Disputes", description: "Expert help for rejected, delayed, or disputed insurance claims. 500+ cases resolved.", siteName: "Tatkal Claims", locale: "en_IN", type: "website" },
   twitter: { card: "summary_large_image", title: "Tatkal Claims | Insurance Dispute Experts", description: "Recover your rightful insurance claims with professional dispute resolution." },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
   alternates: { canonical: "https://claimresolve.pro" },
