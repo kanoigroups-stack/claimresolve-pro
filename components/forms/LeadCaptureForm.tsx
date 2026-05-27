@@ -6,6 +6,16 @@ import { Send, CheckCircle, Loader2 } from "lucide-react";
 
 const issueTypes = ["Claim Rejection", "Claim Delay", "Short Settlement", "Mis-selling", "Policy Dispute", "Other"];
 
+// Your Google Form details
+const GOOGLE_FORM_ID = "1HSb7GgqJ666hRy1hv6Vbnm4-ILMAMVj8VkhvIYEqDCY";
+const GOOGLE_FORM_ENTRIES = {
+  name: "entry.645206340",
+  email: "entry.1018981908",
+  phone: "entry.311686043",
+  issueType: "entry.303539375",
+  message: "entry.228827174",
+};
+
 export default function LeadCaptureForm() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", issueType: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,10 +24,40 @@ export default function LeadCaptureForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setTimeout(() => { setIsSubmitted(false); setFormData({ name: "", email: "", phone: "", issueType: "", message: "" }); }, 3000);
+
+    try {
+      // Build the Google Form submission URL
+      const formUrl = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
+      
+      // Create the data to send
+      const formBody = new URLSearchParams();
+      formBody.append(GOOGLE_FORM_ENTRIES.name, formData.name);
+      formBody.append(GOOGLE_FORM_ENTRIES.email, formData.email);
+      formBody.append(GOOGLE_FORM_ENTRIES.phone, formData.phone);
+      formBody.append(GOOGLE_FORM_ENTRIES.issueType, formData.issueType);
+      formBody.append(GOOGLE_FORM_ENTRIES.message, formData.message);
+
+      // Send to Google Form (no-cors mode because Google doesn't allow direct CORS)
+      await fetch(formUrl, {
+        method: "POST",
+        body: formBody.toString(),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        mode: "no-cors",
+      });
+
+      // Show success (even though no-cors hides the response, it still submits)
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Clear form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: "", email: "", phone: "", issueType: "", message: "" });
+      }, 3000);
+    } catch (error) {
+      setIsSubmitting(false);
+      alert("Something went wrong. Please try again or WhatsApp us directly.");
+    }
   };
 
   if (isSubmitted) {
