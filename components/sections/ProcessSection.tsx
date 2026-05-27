@@ -24,7 +24,7 @@ export default function ProcessSection() {
             <motion.div key={step.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.15 }} className="relative flex flex-col items-center text-center">
               <div className="relative mb-6">
                 <div className="w-20 h-20 bg-white rounded-2xl shadow-card border-2 border-primary-100 flex items-center justify-center relative z-10"><step.icon className="w-8 h-8 text-primary-700" /></div>
-                <div className="absolute -top-3 -right-3 w-8 h-8 bg-accent-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">{index + 1}</div>
+                <div className="absolute -top-3 -right-3 w-8 h-8 bg-accent-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg z-20">{index + 1}</div>
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
               <p className="text-sm text-slate-600 leading-relaxed max-w-[200px]">{step.description}</p>
