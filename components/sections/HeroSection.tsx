@@ -37,7 +37,7 @@ export default function HeroSection() {
               ))}
             </div>
           </motion.div>
-          <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }} className="lg:justify-self-end w-full max-w-md">
+          <motion.div id="contact-form" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }} className="lg:justify-self-end w-full max-w-md">
             <LeadCaptureForm />
           </motion.div>
         </div>
