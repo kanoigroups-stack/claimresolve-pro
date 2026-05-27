@@ -10,7 +10,7 @@ const steps = [
   { icon: Upload, title: "Share Documents", description: "Upload rejection letters, policy documents, and correspondence for expert review." },
   { icon: Search, title: "Expert Evaluation", description: "Our legal and insurance specialists analyze your case viability and strategy." },
   { icon: Gavel, title: "Case Filing", description: "We draft complaints, approach insurers, ombudsman, or courts on your behalf." },
-  { icon: BadgeCheck, title: "Claim Resolution", description: "Receive your rightful settlement. We charge only when you win." },
+  { icon: BadgeCheck, title: "Claim Resolution", description: "Receive your rightful settlement. Transparent fixed fees based on case complexity." },
 ];
 
 export default function ProcessSection() {
