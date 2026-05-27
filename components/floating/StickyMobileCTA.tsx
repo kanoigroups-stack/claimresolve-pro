@@ -12,7 +12,7 @@ export default function StickyMobileCTA() {
     <AnimatePresence>
       {isVisible && (
         <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }} transition={{ type: "spring", stiffness: 300, damping: 30 }} className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 p-4 shadow-lg lg:hidden">
-          <a href="#contact" className="btn-primary w-full text-base py-3.5 group">Submit Your Case Now<ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></a>
+          <a href="#contact-form" className="btn-primary w-full text-base py-3.5 group">Submit Your Case Now<ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></a>
         </motion.div>
       )}
     </AnimatePresence>
