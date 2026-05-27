@@ -119,7 +119,7 @@ export default function Header() {
               </Link>
               <a href="tel:+919321152524" className="flex items-center justify-center gap-2 text-primary-700 font-medium mt-2">
                 <Phone className="w-5 h-5" />
-                Call: +91 XXXXXXXXXX
+                Call: +91 9321152524
               </a>
             </nav>
           </motion.div>
