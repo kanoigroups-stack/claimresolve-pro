@@ -24,7 +24,9 @@ export default function ServicesSection() {
             <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-5 transition-transform group-hover:scale-110`}><service.icon className="w-7 h-7" /></div>
             <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-700 transition-colors">{service.title}</h3>
             <p className="text-slate-600 leading-relaxed mb-5 text-sm md:text-base">{service.description}</p>
-            <div className="flex items-center text-primary-700 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">Learn More <ArrowRight className="w-4 h-4" /></div>
+            <a href="#contact" className="flex items-center text-primary-700 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
+              Get Help <ArrowRight className="w-4 h-4" />
+            </a>
           </motion.div>
         ))}
       </div>
