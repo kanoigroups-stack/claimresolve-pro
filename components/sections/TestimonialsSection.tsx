@@ -29,8 +29,12 @@ export default function TestimonialsSection() {
             <motion.div key={current} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.4 }} className="w-full">
               <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
                 <div className="relative">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden ring-4 ring-primary-100"><img src={testimonials[current].image} alt={testimonials[current].name} className="w-full h-full object-cover" /></div>
-                  <div className="absolute -bottom-2 -right-2 bg-accent-500 text-white text-xs font-bold px-2 py-1 rounded-lg">{testimonials[current].claimType}</div>
+                  <div className="relative">
+  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary-800 flex items-center justify-center ring-4 ring-primary-100">
+    <span className="text-white text-2xl font-bold">{testimonials[current].name.split(' ').map(n => n[0]).join('')}</span>
+  </div>
+  <div className="absolute -bottom-2 -right-2 bg-accent-500 text-white text-xs font-bold px-2 py-1 rounded-lg">{testimonials[current].claimType}</div>
+</div>
                 </div>
                 <div className="text-center md:text-left">
                   <h4 className="text-xl font-bold text-slate-900">{testimonials[current].name}</h4>
