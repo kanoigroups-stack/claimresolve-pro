@@ -24,7 +24,7 @@ interface FormErrors {
 
 export default function LeadCaptureForm() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", issueType: "", message: "" });
-  const [errors, setErrors] = useState<<FormErrors>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
