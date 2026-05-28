@@ -25,7 +25,7 @@ export default function HeroSection() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 text-balance">Resolve Your Insurance Claim <span className="gradient-text">Disputes With Experts</span></h1>
             <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl">Helping policyholders recover their rightful insurance claims through professional dispute resolution. From rejection to recovery, we handle it all.</p>
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="#contact" className="btn-primary text-base group">Submit Your Complaint<ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></a>
+              <a href="#contact-form" className="btn-primary text-base group">Submit Your Complaint<ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></a>
               <a href="#process" className="btn-secondary text-base group">How It Works<ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" /></a>
             </div>
             <div className="flex flex-wrap gap-4 md:gap-6">
@@ -37,9 +37,9 @@ export default function HeroSection() {
               ))}
             </div>
           </motion.div>
-          <motion.div id="contact-form" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }} className="lg:justify-self-end w-full max-w-md">
+          <div id="contact-form" tabIndex={-1} className="lg:justify-self-end w-full max-w-md scroll-mt-24">
             <LeadCaptureForm />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
