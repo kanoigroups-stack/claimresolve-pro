@@ -29,13 +29,30 @@ export default function LeadCaptureForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
+  const nameInputRef = useRef<<HTMLInputElement>(null);
+
   // Auto-focus name field when URL has #contact-form
   useEffect(() => {
-    if (window.location.hash === "#contact-form" && nameInputRef.current) {
-      setTimeout(() => {
-        nameInputRef.current?.focus();
-      }, 500);
-    }
+    const checkAndFocus = () => {
+      if (window.location.hash === "#contact-form" && nameInputRef.current) {
+        // Scroll to the form container first
+        const formContainer = document.getElementById("contact-form");
+        if (formContainer) {
+          formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        
+        // Focus after scroll completes
+        setTimeout(() => {
+          nameInputRef.current?.focus();
+        }, 800);
+      }
+    };
+
+    // Check immediately and after a delay (for navigation from other pages)
+    checkAndFocus();
+    const timer = setTimeout(checkAndFocus, 500);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const validate = (): boolean => {
