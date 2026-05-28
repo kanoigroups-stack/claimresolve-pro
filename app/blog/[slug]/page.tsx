@@ -155,8 +155,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <h3 className="text-xl font-bold text-primary-900 mb-2">Facing a similar issue?</h3>
           <p className="text-slate-600 mb-6">Our experts can help you resolve your insurance dispute. Get a free case evaluation today.</p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/#contact" className="btn-primary text-center">Get Free Case Evaluation</Link>
-            <a href="tel:+91XXXXXXXXXX" className="btn-secondary text-center">Call Our Experts</a>
+            <Link href="/#contact-form" className="btn-primary text-center">Get Free Case Evaluation</Link>
+            <a href="tel:+919321152524" className="btn-secondary text-center">Call Our Experts</a>
           </div>
         </div>
 
