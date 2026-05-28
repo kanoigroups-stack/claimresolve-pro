@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 
 const issueTypes = ["Claim Rejection", "Claim Delay", "Short Settlement", "Mis-selling", "Policy Dispute", "Other"];
 
-// Google Form details
 const GOOGLE_FORM_ID = "1FAIpQLSeTkodT19oTHy2ZJeKm_uG1imDMRr_CTrPnlyuVNkYsOD9zFA";
 const GOOGLE_FORM_ENTRIES = {
   name: "entry.280581221",
@@ -28,12 +27,21 @@ export default function LeadCaptureForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const nameInputRef = useRef<<HTMLInputElement>(null);
+
+  // Auto-focus name field when URL has #contact-form
+  useEffect(() => {
+    if (window.location.hash === "#contact-form" && nameInputRef.current) {
+      setTimeout(() => {
+        nameInputRef.current?.focus();
+      }, 500);
+    }
+  }, []);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
     let isValid = true;
 
-    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = "Full name is required";
       isValid = false;
@@ -42,7 +50,6 @@ export default function LeadCaptureForm() {
       isValid = false;
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
       newErrors.email = "Email address is required";
@@ -52,7 +59,6 @@ export default function LeadCaptureForm() {
       isValid = false;
     }
 
-    // Phone validation - Indian mobile: starts with 5-9, followed by 9 digits
     const phoneRegex = /^[5-9][0-9]{9}$/;
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
@@ -62,7 +68,6 @@ export default function LeadCaptureForm() {
       isValid = false;
     }
 
-    // Issue type validation
     if (!formData.issueType) {
       newErrors.issueType = "Please select an issue type";
       isValid = false;
@@ -74,7 +79,6 @@ export default function LeadCaptureForm() {
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    // Clear error for this field when user starts typing
     if (errors[field as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
@@ -82,13 +86,10 @@ export default function LeadCaptureForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validate()) return;
-    
     setIsSubmitting(true);
 
     const formUrl = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
-    
     const hiddenForm = document.createElement("form");
     hiddenForm.method = "POST";
     hiddenForm.action = formUrl;
@@ -123,7 +124,6 @@ export default function LeadCaptureForm() {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setErrors({});
-      
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: "", email: "", phone: "", issueType: "", message: "" });
@@ -146,16 +146,14 @@ export default function LeadCaptureForm() {
   return (
     <div className="bg-white rounded-2xl p-6 md:p-8 shadow-float border border-slate-100 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-800 via-primary-600 to-accent-500" />
-      
       <div className="mb-6">
         <h3 className="text-xl font-bold text-slate-900 mb-1">Get Free Case Evaluation</h3>
         <p className="text-sm text-slate-500">Fill in your details and our experts will reach out</p>
       </div>
-      
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-        {/* Name Field */}
         <div>
           <input 
+            ref={nameInputRef}
             type="text" 
             placeholder="Full Name *" 
             value={formData.name} 
@@ -170,7 +168,6 @@ export default function LeadCaptureForm() {
           )}
         </div>
 
-        {/* Email & Phone Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <input 
@@ -187,7 +184,6 @@ export default function LeadCaptureForm() {
               </div>
             )}
           </div>
-          
           <div>
             <input 
               type="tel" 
@@ -206,7 +202,6 @@ export default function LeadCaptureForm() {
           </div>
         </div>
 
-        {/* Issue Type Field */}
         <div>
           <select 
             value={formData.issueType} 
@@ -224,7 +219,6 @@ export default function LeadCaptureForm() {
           )}
         </div>
 
-        {/* Message Field (Optional) */}
         <textarea 
           placeholder="Briefly describe your issue (optional)" 
           rows={3} 
