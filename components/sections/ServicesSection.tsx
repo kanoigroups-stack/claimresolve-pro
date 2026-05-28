@@ -25,7 +25,6 @@ export default function ServicesSection() {
             <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-700 transition-colors">{service.title}</h3>
             <p className="text-slate-600 leading-relaxed mb-5 text-sm md:text-base">{service.description}</p>
             <a href="#contact-form" className="flex items-center text-primary-700 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">Get Help <ArrowRight className="w-4 h-4" /></a>
-            </a>
           </motion.div>
         ))}
       </div>
