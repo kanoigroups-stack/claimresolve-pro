@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 
@@ -24,34 +24,9 @@ interface FormErrors {
 
 export default function LeadCaptureForm() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", issueType: "", message: "" });
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const nameInputRef = useRef<HTMLInputElement>(null);
-
-  // Auto-focus name field when URL has #contact-form
-  useEffect(() => {
-    const checkAndFocus = () => {
-      if (window.location.hash === "#contact-form" && nameInputRef.current) {
-        // Scroll to the form container first
-        const formContainer = document.getElementById("contact-form");
-        if (formContainer) {
-          formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-        
-        // Focus after scroll completes
-        setTimeout(() => {
-          nameInputRef.current?.focus();
-        }, 800);
-      }
-    };
-
-    // Check immediately and after a delay (for navigation from other pages)
-    checkAndFocus();
-    const timer = setTimeout(checkAndFocus, 500);
-    
-    return () => clearTimeout(timer);
-  }, []);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -168,7 +143,6 @@ export default function LeadCaptureForm() {
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <div>
           <input 
-            ref={nameInputRef}
             type="text" 
             placeholder="Full Name *" 
             value={formData.name} 
