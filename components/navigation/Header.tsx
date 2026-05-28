@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Shield } from "lucide-react";
 import Link from "next/link";
+import { scrollToForm } from "../sections/HeroSection";
 
 const navLinks = [
   { href: "#services", label: "Services" },
@@ -11,7 +12,7 @@ const navLinks = [
   { href: "#trust", label: "Why Us" },
   { href: "#testimonials", label: "Success Stories" },
   { href: "#faq", label: "FAQs" },
-  { href: "/blog", label: "Blog" }, // ← ADDED BLOG LINK
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Header() {
@@ -23,18 +24,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -53,13 +42,13 @@ export default function Header() {
                 <Shield className="w-5 h-5 text-white" />
               </div>
               <div className="flex flex-col">
-  <span className="font-heading font-bold text-xl leading-none text-primary-800">
-    Tatkal Claims
-  </span>
-  <span className="text-[10px] font-semibold tracking-widest uppercase text-accent-500">
-    Pro
-  </span>
-</div>
+                <span className="font-heading font-bold text-xl leading-none text-primary-800">
+                  Tatkal Claims
+                </span>
+                <span className="text-[10px] font-semibold tracking-widest uppercase text-accent-500">
+                  Pro
+                </span>
+              </div>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8">
@@ -79,7 +68,9 @@ export default function Header() {
                 <Phone className="w-4 h-4" />
                 <span>Call Us</span>
               </a>
-              <Link href="#contact-form" className="btn-primary text-sm py-2.5 px-5">Submit Case</Link>
+              <button type="button" onClick={scrollToForm} className="btn-primary text-sm py-2.5 px-5">
+                Submit Case
+              </button>
             </div>
 
             <button
@@ -112,7 +103,9 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="#contact-form" className="btn-primary mt-4 text-center" onClick={() => setIsMobileMenuOpen(false)}>Submit Your Case</Link>
+              <button type="button" onClick={() => { setIsMobileMenuOpen(false); scrollToForm(); }} className="btn-primary mt-4 text-center w-full">
+                Submit Your Case
+              </button>
               <a href="tel:+919321152524" className="flex items-center justify-center gap-2 text-primary-700 font-medium mt-2">
                 <Phone className="w-5 h-5" />
                 Call: +91 9321152524
