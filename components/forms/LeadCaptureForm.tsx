@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, Loader2 } from "lucide-react";
 
@@ -20,7 +20,6 @@ export default function LeadCaptureForm() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", issueType: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const iframeRef = useRef<<HTMLIFrameElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,12 +34,41 @@ export default function LeadCaptureForm() {
     params.append(GOOGLE_FORM_ENTRIES.issueType, formData.issueType);
     params.append(GOOGLE_FORM_ENTRIES.message, formData.message);
 
-    // Submit via hidden iframe (this mimics a real browser form submission)
-    if (iframeRef.current) {
-      iframeRef.current.src = `${formUrl}?${params.toString()}`;
+    // Create a hidden form and submit it (most reliable method)
+    const hiddenForm = document.createElement("form");
+    hiddenForm.method = "POST";
+    hiddenForm.action = formUrl;
+    hiddenForm.target = "hidden-iframe";
+    hiddenForm.style.display = "none";
+
+    // Add all fields to the hidden form
+    Object.entries(GOOGLE_FORM_ENTRIES).forEach(([key, entryId]) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = entryId;
+      input.value = formData[key as keyof typeof formData];
+      hiddenForm.appendChild(input);
+    });
+
+    // Create hidden iframe target
+    let iframe = document.getElementById("hidden-iframe") as HTMLIFrameElement | null;
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.id = "hidden-iframe";
+      iframe.name = "hidden-iframe";
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
     }
 
-    // Show success after a short delay (giving iframe time to load)
+    document.body.appendChild(hiddenForm);
+    hiddenForm.submit();
+
+    // Clean up
+    setTimeout(() => {
+      document.body.removeChild(hiddenForm);
+    }, 1000);
+
+    // Show success
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -67,14 +95,6 @@ export default function LeadCaptureForm() {
 
   return (
     <div className="bg-white rounded-2xl p-6 md:p-8 shadow-float border border-slate-100 relative overflow-hidden">
-      {/* Hidden iframe for Google Form submission */}
-      <iframe 
-        ref={iframeRef} 
-        name="google-form-iframe" 
-        style={{ display: "none" }} 
-        title="Google Form Submission"
-      />
-      
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-800 via-primary-600 to-accent-500" />
       
       <div className="mb-6">
@@ -82,7 +102,7 @@ export default function LeadCaptureForm() {
         <p className="text-sm text-slate-500">Fill in your details and our experts will reach out</p>
       </div>
       
-      <form onSubmit={handleSubmit} className="space-y-4" target="google-form-iframe">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input 
           type="text" 
           placeholder="Full Name" 
