@@ -27,7 +27,7 @@ export default function LeadCaptureForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const nameInputRef = useRef<<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   // Auto-focus name field when URL has #contact-form
   useEffect(() => {
