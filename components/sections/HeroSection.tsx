@@ -4,6 +4,22 @@ import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Clock, Users, Award, ChevronRight } from "lucide-react";
 import LeadCaptureForm from "../forms/LeadCaptureForm";
 
+// Shared scroll-to-form function
+export function scrollToForm() {
+  const formContainer = document.getElementById("contact-form");
+  const nameInput = document.querySelector('input[placeholder="Full Name *"]') as HTMLInputElement | null;
+  
+  if (formContainer) {
+    formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  
+  if (nameInput) {
+    setTimeout(() => {
+      nameInput.focus();
+    }, 800);
+  }
+}
+
 const trustBadges = [
   { icon: ShieldCheck, label: "100% Secure" },
   { icon: Clock, label: "24/7 Support" },
@@ -25,7 +41,7 @@ export default function HeroSection() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 text-balance">Resolve Your Insurance Claim <span className="gradient-text">Disputes With Experts</span></h1>
             <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl">Helping policyholders recover their rightful insurance claims through professional dispute resolution. From rejection to recovery, we handle it all.</p>
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="#contact-form" className="btn-primary text-base group">Submit Your Complaint<ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></a>
+              <button type="button" onClick={scrollToForm} className="btn-primary text-base group">Submit Your Complaint<ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></button>
               <a href="#process" className="btn-secondary text-base group">How It Works<ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" /></a>
             </div>
             <div className="flex flex-wrap gap-4 md:gap-6">
