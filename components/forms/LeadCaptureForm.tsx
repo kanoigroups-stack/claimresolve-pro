@@ -6,8 +6,8 @@ import { Send, CheckCircle, Loader2 } from "lucide-react";
 
 const issueTypes = ["Claim Rejection", "Claim Delay", "Short Settlement", "Mis-selling", "Policy Dispute", "Other"];
 
-// Your Google Form details
-const GOOGLE_FORM_ID = "1Ty8wYVKp5bJ6cvuuLuddzY8uFOitoG8-XaG6tNPdcZM";
+// CORRECT Google Form details
+const GOOGLE_FORM_ID = "1FAIpQLSeTkodT19oTHy2ZJeKm_uG1imDMRr_CTrPnlyuVNkYsOD9zFA";
 const GOOGLE_FORM_ENTRIES = {
   name: "entry.280581221",
   email: "entry.577275878",
