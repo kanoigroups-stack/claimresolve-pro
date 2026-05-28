@@ -79,9 +79,7 @@ export default function Header() {
                 <Phone className="w-4 h-4" />
                 <span>Call Us</span>
               </a>
-              <Link href="#contact" className="btn-primary text-sm py-2.5 px-5">
-                Submit Case
-              </Link>
+              <Link href="#contact-form" className="btn-primary text-sm py-2.5 px-5">Submit Case</Link>
             </div>
 
             <button
@@ -114,9 +112,7 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="#contact" className="btn-primary mt-4 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-                Submit Your Case
-              </Link>
+              <Link href="#contact-form" className="btn-primary mt-4 text-center" onClick={() => setIsMobileMenuOpen(false)}>Submit Your Case</Link>
               <a href="tel:+919321152524" className="flex items-center justify-center gap-2 text-primary-700 font-medium mt-2">
                 <Phone className="w-5 h-5" />
                 Call: +91 9321152524
